@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="UchebkaFinal.ExamUC">
+  <Grid Margin="8" RowDefinitions="Auto,*">
+    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+      <TextBlock Text="Фильтр по аудитории:" VerticalAlignment="Center"/>
+      <TextBox x:Name="ClassroomFilterTextBox" Width="200"/>
+      <Button Content="Применить"   Click="Button_Click"/>
+      <Button Content="Сбросить" Click="Button_Click_1"/>
+    </StackPanel>
+
+    <DataGrid x:Name="ExamsGrid" Grid.Row="1" AutoGenerateColumns="False"
+              IsReadOnly="True">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Дата" Binding="{Binding ExamDate}" />
+        <DataGridTextColumn Header="Курс" Binding="{Binding CourseId}" />
+        <DataGridTextColumn Header="Студент" Binding="{Binding RegNum}" />
+        <DataGridTextColumn Header="Сотрудник" Binding="{Binding StaffId}" />
+        <DataGridTextColumn Header="Аудитория" Binding="{Binding Classroom}" />
+        <DataGridTextColumn Header="Оценка" Binding="{Binding Grade}" />
+      </DataGrid.Columns>
+    </DataGrid>
+  </Grid>
+</UserControl>

@@ -1,0 +1,37 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:UchebkaFinal.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="UchebkaFinal.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="UchebkaFinal"
+        FontFamily="Consolas"
+        Background="#FCFAF5"
+        Foreground="#5C574F">
+
+ <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Log In"
+               FontSize="18" HorizontalAlignment="Center" Margin="0,0,0,16"/>
+
+    <TextBlock Grid.Row="1" Grid.Column="0" Text="login:" VerticalAlignment="Center" Margin="0,0,8,8"/>
+    <TextBox x:Name="LoginTextBox"
+             Grid.Row="1" Grid.Column="1" Width="200" Margin="0,0,0,8"/>
+
+    <TextBlock Grid.Row="2" Grid.Column="0" Text="password:" VerticalAlignment="Center" Margin="0,0,8,8"/>
+    <TextBox x:Name="PasswordTextBox"
+             Grid.Row="2" Grid.Column="1" Width="200" Margin="0,0,0,8"
+             PasswordChar="*"/>
+
+    <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal"
+                HorizontalAlignment="Right" Spacing="8">
+      <TextBlock x:Name="ErrorTextBlock" Foreground="Red"
+                 VerticalAlignment="Center" Margin="0,0,16,0"/>
+      <Button Content="enter" Width="80" Foreground="#5C574F" Click="Button_Click"/>
+    </StackPanel>
+  </Grid>
+
+    
+</Window>
