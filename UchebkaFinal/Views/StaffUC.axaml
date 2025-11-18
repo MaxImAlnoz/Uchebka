@@ -4,5 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="UchebkaFinal.StaffUC">
-    
+    <Grid Margin="8" RowDefinitions="Auto,Auto,*">
+    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,8" Grid.Row="0">
+      <TextBlock Text="Find for name:" VerticalAlignment="Center"/>
+      <TextBox x:Name="NameFilterTextBox" TextChanged="NameFilterTextBox_TextChanged" Width="200"/>
+      <Button Content="Search" Click="Button_Click"/>
+      <Button Content="Sbros" Click="Button_Click_1"/>
+    </StackPanel>
+
+    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,8" Grid.Row="1">
+      <Button Content="Add" Click="AddButton_Click"/>
+      <Button Content="Delete" Click="DeleteButton_Click"/>
+      <Button Content="Save" Click="SaveButton_Click"/>
+      <TextBlock x:Name="ErrorTextBlock" Foreground="Red" VerticalAlignment="Center"/>
+    </StackPanel>
+
+    <DataGrid x:Name="StaffGrid" Grid.Row="2" AutoGenerateColumns="False"
+              IsReadOnly="False">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="ID" Binding="{Binding StaffId}" />
+        <DataGridTextColumn Header="Kafedra" Binding="{Binding DeptCode}" />
+        <DataGridTextColumn Header="Name" Binding="{Binding FullName}" />
+        <DataGridTextColumn Header="Dolzhnost" Binding="{Binding Position}" />
+        <DataGridTextColumn Header="Salary" Binding="{Binding Salary}" />
+      </DataGrid.Columns>
+    </DataGrid>
+  </Grid>
 </UserControl>

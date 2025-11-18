@@ -6,21 +6,21 @@
              x:Class="UchebkaFinal.ExamUC">
   <Grid Margin="8" RowDefinitions="Auto,*">
     <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
-      <TextBlock Text="Фильтр по аудитории:" VerticalAlignment="Center"/>
-      <TextBox x:Name="ClassroomFilterTextBox" Width="200"/>
-      <Button Content="Применить"   Click="Button_Click"/>
-      <Button Content="Сбросить" Click="Button_Click_1"/>
+      <TextBlock Text="Search for audit" VerticalAlignment="Center"/>
+      <TextBox x:Name="ClassroomFilterTextBox" TextChanged="ClassroomFilterTextBox_TextChanged" Width="200"/>
+      <Button Content="Enter"   Click="Button_Click"/>
+      <Button Content="Sbros" Click="Button_Click_1"/>
     </StackPanel>
 
     <DataGrid x:Name="ExamsGrid" Grid.Row="1" AutoGenerateColumns="False"
               IsReadOnly="True">
       <DataGrid.Columns>
-        <DataGridTextColumn Header="Дата" Binding="{Binding ExamDate}" />
-        <DataGridTextColumn Header="Курс" Binding="{Binding CourseId}" />
-        <DataGridTextColumn Header="Студент" Binding="{Binding RegNum}" />
-        <DataGridTextColumn Header="Сотрудник" Binding="{Binding StaffId}" />
-        <DataGridTextColumn Header="Аудитория" Binding="{Binding Classroom}" />
-        <DataGridTextColumn Header="Оценка" Binding="{Binding Grade}" />
+        <DataGridTextColumn Header="Date" Binding="{Binding ExamDate}" />
+        <DataGridTextColumn Header="Course" Binding="{Binding CourseId}" />
+        <DataGridTextColumn Header="Student" Binding="{Binding RegNum}" />
+        <DataGridTextColumn Header="Employee" Binding="{Binding StaffId}" />
+        <DataGridTextColumn Header="Audit" Binding="{Binding Classroom}" />
+        <DataGridTextColumn Header="Point" Binding="{Binding Grade}" />
       </DataGrid.Columns>
     </DataGrid>
   </Grid>

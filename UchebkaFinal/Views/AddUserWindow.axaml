@@ -1,0 +1,32 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="250"
+        x:Class="UchebkaFinal.Views.AddUserWindow"
+        Title="Добавить пользователя"
+        FontFamily="Consolas">
+  <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*" Margin="16">
+    <TextBlock Grid.Row="0" Grid.Column="0" Text="Логин:" VerticalAlignment="Center" Margin="0,0,8,8"/>
+    <TextBox x:Name="LoginTextBox"
+             Grid.Row="0" Grid.Column="1" Margin="0,0,0,8" Width="200"/>
+
+    <TextBlock Grid.Row="1" Grid.Column="0" Text="Пароль:" VerticalAlignment="Center" Margin="0,0,8,8"/>
+    <TextBox x:Name="PasswordTextBox"
+             Grid.Row="1" Grid.Column="1" Margin="0,0,0,8" Width="200" PasswordChar="*"/>
+
+    <TextBlock Grid.Row="2" Grid.Column="0" Text="Роль:" VerticalAlignment="Center" Margin="0,0,8,8"/>
+    <ComboBox x:Name="RoleComboBox"
+              Grid.Row="2" Grid.Column="1" Margin="0,0,0,8" Width="200"/>
+
+    <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal"
+                HorizontalAlignment="Right" Spacing="8">
+      <TextBlock x:Name="ErrorTextBlock" Foreground="Red"
+                 VerticalAlignment="Center" Margin="0,0,16,0"/>
+      <Button Content="ОК" Width="80" Click="OkButton_Click"/>
+      <Button Content="Отмена" Width="80" Click="CancelButton_Click"/>
+    </StackPanel>
+  </Grid>
+</Window>
+
+
