@@ -1,0 +1,32 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="UchebkaFinal.CreateStudent"
+        Title="Create student"
+        Width="450" Height="220"
+        FontFamily="Consolas"
+        Background="#FCFAF5"
+        Foreground="#5C574F">
+
+  <Grid Margin="16" RowDefinitions="Auto,Auto,*">
+    <StackPanel Spacing="10">
+      <TextBox x:Name="TBFullName" Watermark="Full name" Height="30"/>
+      <ComboBox x:Name="CBProgram" Height="30">
+           <ComboBox.ItemTemplate>
+        <DataTemplate>
+            <TextBlock Text="{Binding Code}"/> 
+        </DataTemplate>
+    </ComboBox.ItemTemplate>
+</ComboBox>
+    </StackPanel>
+
+    <TextBlock x:Name="ErrorTextBlock"
+               Grid.Row="1"
+               Foreground="Red" FontSize="13"
+               IsVisible="False"/>
+
+    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+      <Button Content="Save" Click="SaveButton_Click" Width="90"/>
+      <Button Content="Cancel" Click="CancelButton_Click" Width="90"/>
+    </StackPanel>
+  </Grid>
+</Window>

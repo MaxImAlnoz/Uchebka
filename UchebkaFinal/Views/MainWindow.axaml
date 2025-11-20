@@ -30,6 +30,7 @@
       <TextBlock x:Name="ErrorTextBlock" Foreground="Red"
                  VerticalAlignment="Center" Margin="0,0,16,0"/>
       <Button Content="enter" Width="80" Foreground="#5C574F" Click="Button_Click"/>
+      <Button Content="guest" Width="80" Foreground="#5C574F" Click="Button_Click_1"/>
     </StackPanel>
   </Grid>
 

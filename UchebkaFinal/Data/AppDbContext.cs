@@ -365,13 +365,13 @@ public partial class AppDbContext : DbContext
 
             entity.ToTable("staff");
 
-            entity.Property(e => e.StaffId)
-                .ValueGeneratedNever()
-                .HasColumnName("staff_id");
+            entity.Property(e => e.StaffId).HasColumnName("staff_id");
             entity.Property(e => e.DeptCode)
                 .HasMaxLength(10)
                 .HasColumnName("dept_code");
             entity.Property(e => e.FullName).HasColumnName("full_name");
+            entity.Property(e => e.Login).HasColumnName("login");
+            entity.Property(e => e.Password).HasColumnName("password");
             entity.Property(e => e.Position).HasColumnName("position");
             entity.Property(e => e.Salary)
                 .HasPrecision(10, 2)
@@ -465,6 +465,7 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("name");
         });
+        modelBuilder.HasSequence("staff_staff_id_seq").StartsAt(615L);
 
         OnModelCreatingPartial(modelBuilder);
     }

@@ -1,0 +1,67 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="UchebkaFinal.CreateExam"
+        Title="Добавить экзамен"
+        Width="800" Height="450"
+        FontFamily="Consolas"
+        Background="#FCFAF5"
+        Foreground="#5C574F">
+
+  <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto">
+    <TextBlock Grid.Row="0" Grid.ColumnSpan="2"
+               Text="Добавить экзамен"
+               FontFamily="{StaticResource StackSans}"
+               FontSize="28"
+               Foreground="#8A716A"
+               HorizontalAlignment="Center"
+               Margin="0,16"/>
+
+    <StackPanel Grid.Row="1" Grid.Column="0" Margin="24" Spacing="16">
+      <TextBox x:Name="TBAudience" Watermark="Аудитория"/>
+      <TextBox x:Name="TBGrade" Watermark="Оценка (2–5)" MaxLength="1"/>
+      <DatePicker x:Name="DPDate"/>
+    </StackPanel>
+
+    <StackPanel Grid.Row="1" Grid.Column="1" Margin="24" Spacing="16">
+      <ComboBox x:Name="CBDiscipline">
+        <ComboBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding Title}"/>
+          </DataTemplate>
+        </ComboBox.ItemTemplate>
+      </ComboBox>
+      <ComboBox x:Name="CBStudent">
+        <ComboBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding FullName}"/>
+          </DataTemplate>
+        </ComboBox.ItemTemplate>
+      </ComboBox>
+      <ComboBox x:Name="CBTeacher">
+        <ComboBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding FullName}"/>
+          </DataTemplate>
+        </ComboBox.ItemTemplate>
+      </ComboBox>
+    </StackPanel>
+
+    <TextBlock x:Name="ErrorTextBlock"
+               Grid.Row="2" Grid.ColumnSpan="2"
+               Foreground="#D9534F"
+               FontSize="14"
+               FontWeight="SemiBold"
+               TextAlignment="Center"
+               Margin="0,8"
+               IsVisible="False"/>
+
+    <StackPanel Grid.Row="2" Grid.ColumnSpan="2"
+                Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,24" Spacing="24">
+      <Button Content="Сохранить" Click="Button_Click_1"/>
+      <Button Content="Отмена" Click="CancelButton_Click"/>
+    </StackPanel>
+  </Grid>
+</Window>

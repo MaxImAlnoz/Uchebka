@@ -1,18 +1,84 @@
-<Application xmlns="https://github.com/avaloniaui"
+﻿<Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="UchebkaFinal.App"
              xmlns:local="using:UchebkaFinal"
              RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
   
     <Application.Styles>
-         <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+        <!-- 1. Стили DataGrid — обязательно ДО темы -->
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
 
+        <!-- 2. Базовая тема — ОДИН раз -->
         <FluentTheme />
 
+        <!-- 3. Ваши кастомные стили — БЕЗ xmlns! -->
+        <Styles>
+            <!-- TextBox -->
+            <Style Selector="TextBox">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="BorderBrush" Value="#D5D0CB"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="4"/>
+                <Setter Property="Padding" Value="10,8"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Height" Value="36"/>
+                <Setter Property="Foreground" Value="#5C574F"/>
+            </Style>
+            <Style Selector="TextBox:pointerover">
+                <Setter Property="BorderBrush" Value="#C0B8B0"/>
+            </Style>
+            <Style Selector="TextBox:focus">
+                <Setter Property="BorderBrush" Value="#8A716A"/>
+                <Setter Property="BorderThickness" Value="2"/>
+            </Style>
+
+            <!-- ComboBox & DatePicker -->
+            <Style Selector="ComboBox, DatePicker">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="BorderBrush" Value="#D5D0CB"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="4"/>
+                <Setter Property="Padding" Value="10,6"/>
+                <Setter Property="Height" Value="36"/>
+            </Style>
+
+            <!-- Button -->
+            <Style Selector="Button">
+                <Setter Property="Background" Value="#C2B8B2"/>
+                <Setter Property="Foreground" Value="#8A716A"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontFamily" Value="Consolas"/>
+                <Setter Property="CornerRadius" Value="6"/>
+                <Setter Property="Padding" Value="20,10"/>
+                <Setter Property="MinWidth" Value="100"/>
+                <Setter Property="Effect">
+					<DropShadowEffect BlurRadius="4" Opacity="0.15" Color="#888888"/>
+                </Setter>
+            </Style>
+            <Style Selector="Button:pointerover">
+                <Setter Property="Background" Value="#8A716A"/> <!-- ← стало ТЕМНЕЕ, чем обычное состояние -->
+                <Setter Property="Foreground" Value="#FFFFFF"/>
+                <Setter Property="Effect">
+                <DropShadowEffect BlurRadius="6" Opacity="0.25" Color="#555555"/>
+  </Setter>
+            </Style>
+            <Style Selector="Button:pressed">
+                 <Setter Property="Background" Value="#74685F"/>
+  <Setter Property="Foreground" Value="#FFFFFF"/>
+  <Setter Property="Effect">
+    <DropShadowEffect BlurRadius="2" Opacity="0.3" Color="#333333"/>
+  </Setter>
+            </Style>
+            <!-- Кнопки "Отмена", "Выйти" — светлее -->
+            <Style Selector="Button[Content='Отмена'], Button[Content='Cancel'], Button[Content='Выйти']">
+                <Setter Property="Background" Value="#E8E4E0"/>
+                <Setter Property="Foreground" Value="#7A736A"/>
+            </Style>
+        </Styles>
     </Application.Styles>
 </Application>

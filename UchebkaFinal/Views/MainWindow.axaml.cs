@@ -22,7 +22,7 @@ namespace UchebkaFinal.Views
                 return;
             }
 
-            var user = App.DbContext.UserAccounts.Include(x => x.Role).FirstOrDefault(x => x.Login == login && x.Password == password);
+            var user = App.DbContext.Staff.FirstOrDefault(x => x.Login == login && x.Password == password);
 
             if (user == null)
             {
@@ -33,6 +33,15 @@ namespace UchebkaFinal.Views
             ErrorTextBlock.Text = string.Empty;
             App.CurrentUser = user;
 
+            var nextWindow = new NextW(user);
+            nextWindow.Show();
+            Close();
+        }
+
+        private void Button_Click_1(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            var user = App.DbContext.Staff.FirstOrDefault(x => x.Position == "Доцент");
+            App.CurrentUser = user;
             var nextWindow = new NextW(user);
             nextWindow.Show();
             Close();

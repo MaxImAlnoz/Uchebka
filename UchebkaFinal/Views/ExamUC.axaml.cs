@@ -10,17 +10,37 @@ namespace UchebkaFinal;
 
 public partial class ExamUC : UserControl
 {
+
     private List<Exam> _exam = new();
-    public ExamUC()
+
+    public ExamUC(Staff user)
     {
         InitializeComponent();
-        LoadData();
+        LoadData(user);
+        if (user.Position == "зав. кафедрой")
+        {
+            ExamsGrid.IsReadOnly = false;
+            Create.IsEnabled = true;
+        }
+
+
     }
 
-    private void LoadData()
+    private void LoadData(Staff user)
     {
-        _exam = App.DbContext.Exams.ToList();
-        ExamsGrid.ItemsSource = _exam;
+        if (user.Position != "зав. кафедрой")
+        {
+            _exam = App.DbContext.Exams.Where(x => x.StaffId == user.StaffId).ToList();
+
+            ExamsGrid.ItemsSource = _exam;
+        }
+        else
+        {
+            _exam = App.DbContext.Exams.ToList();
+
+            ExamsGrid.ItemsSource = _exam;
+        }
+
     }
 
     private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -59,5 +79,28 @@ public partial class ExamUC : UserControl
     private void ClassroomFilterTextBox_TextChanged(object? sender, TextChangedEventArgs e)
     {
         ApplyFilter();
+    }
+
+    private void Button_Click_2(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        try
+        {
+
+            ExamsGrid?.CommitEdit();
+
+            var saved = App.DbContext.SaveChanges();
+
+            ErrorTextBlock.Text = $"Сохранено записей: {saved}.";
+        }
+        catch (Exception ex)
+        {
+            ErrorTextBlock.Text = $"от 2 до 5";
+        }
+    }
+
+    private void Button_Click_3(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        var window = new CreateExam();
+        window.Show();
     }
 }

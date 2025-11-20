@@ -13,22 +13,41 @@ public partial class StaffUC : UserControl
     private ObservableCollection<Staff> _staff = new();
 
     private Staff? _pendingNewStaff = null;
+    private readonly Staff _currentUser;
 
-    public StaffUC()
+    public StaffUC(Staff user)
     {
+        _currentUser = user;
         InitializeComponent();
-        LoadData();
+        LoadData(user);
     }
 
-    private void LoadData()
+    private void LoadData(Staff user)
     {
-        var staffFromDb = App.DbContext.Staff.ToList();
-        _staff.Clear();
-        foreach (var s in staffFromDb)
-            _staff.Add(s);
+        if (user.Position == "инженер")
+        {
 
-        StaffGrid.ItemsSource = _staff;
-        _pendingNewStaff = null; 
+            var staffFromDb = App.DbContext.Staff.Where(x => x.Position != "инженер").ToList();
+
+            _staff.Clear();
+            foreach (var s in staffFromDb)
+                _staff.Add(s);
+
+            StaffGrid.ItemsSource = _staff;
+            _pendingNewStaff = null;
+        }
+        if (user.Position == "зав. кафедрой")
+        {
+            var staffFromDb = App.DbContext.Staff.Where(x => x.DeptCode == user.DeptCode).ToList();
+
+            _staff.Clear();
+            foreach (var s in staffFromDb)
+                _staff.Add(s);
+
+            StaffGrid.ItemsSource = _staff;
+            _pendingNewStaff = null;
+        }
+
     }
 
     private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -52,6 +71,8 @@ public partial class StaffUC : UserControl
         if (StaffGrid == null) return;
 
         var filter = NameFilterTextBox.Text?.Trim() ?? string.Empty;
+
+        var source = _staff;
 
         var filtered = App.DbContext.Staff.AsEnumerable();
 
@@ -77,7 +98,7 @@ public partial class StaffUC : UserControl
 
     private void AddButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        var departments = App.DbContext.Departments.Select(d => d.Code).ToList();
+        /*var departments = App.DbContext.Departments.Select(d => d.Code).ToList();
         if (departments.Count == 0)
         {
             ErrorTextBlock.Text = "Нет доступных кафедр. Сначала создайте кафедру.";
@@ -95,7 +116,11 @@ public partial class StaffUC : UserControl
         _staff.Add(_pendingNewStaff);
 
         StaffGrid.SelectedItem = _pendingNewStaff;
-        StaffGrid.Focus();
+        StaffGrid.Focus();*/
+        var nextWindow = new Window();
+        nextWindow = new StaffAdd(_currentUser);
+        nextWindow.Show();
+
     }
 
     private void DeleteButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -114,6 +139,8 @@ public partial class StaffUC : UserControl
         }
 
         ErrorTextBlock.Text = "";
+
+        
     }
 
     private void SaveButton_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -135,7 +162,7 @@ public partial class StaffUC : UserControl
             App.DbContext.SaveChanges();
 
             
-            LoadData();
+            LoadData(_currentUser);
 
             ErrorTextBlock.Text = "Сохранено.";
         }

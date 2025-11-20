@@ -3,23 +3,37 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="UchebkaFinal.ExamUC">
-  <Grid Margin="8" RowDefinitions="Auto,*">
+             x:Class="UchebkaFinal.ExamUC"
+             FontFamily="Consolas"
+        Background="#FCFAF5"
+        Foreground="#5C574F">
+
+  <Grid Margin="8" RowDefinitions="Auto, Auto,*">
     <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
       <TextBlock Text="Search for audit" VerticalAlignment="Center"/>
       <TextBox x:Name="ClassroomFilterTextBox" TextChanged="ClassroomFilterTextBox_TextChanged" Width="200"/>
       <Button Content="Enter"   Click="Button_Click"/>
       <Button Content="Sbros" Click="Button_Click_1"/>
     </StackPanel>
-
-    <DataGrid x:Name="ExamsGrid" Grid.Row="1" AutoGenerateColumns="False"
-              IsReadOnly="True">
+      <StackPanel Grid.Row="1" Orientation="Horizontal">
+          <TextBlock Name="ErrorTextBlock">
+			  
+          </TextBlock>
+          <Button Content="Create" Click="Button_Click_3" IsEnabled="False" Name="Create">
+			  
+          </Button>
+		  <Button Content="Save" Click="Button_Click_2">
+			  
+          </Button>
+      </StackPanel>
+    <DataGrid x:Name="ExamsGrid" Grid.Row="2" AutoGenerateColumns="False"
+              IsReadOnly="False">
       <DataGrid.Columns>
-        <DataGridTextColumn Header="Date" Binding="{Binding ExamDate}" />
-        <DataGridTextColumn Header="Course" Binding="{Binding CourseId}" />
-        <DataGridTextColumn Header="Student" Binding="{Binding RegNum}" />
-        <DataGridTextColumn Header="Employee" Binding="{Binding StaffId}" />
-        <DataGridTextColumn Header="Audit" Binding="{Binding Classroom}" />
+        <DataGridTextColumn IsReadOnly="True" Header="Date" Binding="{Binding ExamDate}" />
+        <DataGridTextColumn IsReadOnly="True" Header="Course" Binding="{Binding CourseId}" />
+        <DataGridTextColumn IsReadOnly="True" Header="Student" Binding="{Binding RegNum}" />
+        <DataGridTextColumn IsReadOnly="True" Header="Employee" Binding="{Binding StaffId}" />
+        <DataGridTextColumn IsReadOnly="True" Header="Audit" Binding="{Binding Classroom}" />
         <DataGridTextColumn Header="Point" Binding="{Binding Grade}" />
       </DataGrid.Columns>
     </DataGrid>

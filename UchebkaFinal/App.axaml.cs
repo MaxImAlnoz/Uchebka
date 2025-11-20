@@ -16,7 +16,7 @@ namespace UchebkaFinal
 
     {
         public static AppDbContext DbContext { get; private set; } = new AppDbContext();
-        public static UserAccount? CurrentUser { get; set; }
+        public static Staff CurrentUser { get; set; }
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
@@ -26,6 +26,7 @@ namespace UchebkaFinal
             DbContext.Staff.ToList();
             DbContext.Exams.ToList();
             DbContext.Programs.ToList();
+            DbContext.Departments.ToList();
         }
 
         public override void OnFrameworkInitializationCompleted()
